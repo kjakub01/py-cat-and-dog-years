@@ -14,21 +14,26 @@ def get_human_age(cat_age: int, dog_age: int) -> list:
         get_human_age(15, 15) == [1, 1]
         get_human_age(24, 24) == [2, 2]
     """
-    if dog_age >= 0 and cat_age >= 0:
-        def cat(age: int) -> int:
-            if age < 15:
-                return 0
-            elif age < 24:
-                return 1
-            else:
-                return 2 + ((age - 24) // 4)
 
-        def dog(age: int) -> int:
-            if age < 15:
-                return 0
-            elif age < 24:
-                return 1
-            else:
-                return 2 + ((age - 24) // 5)
-        return [cat(cat_age), dog(dog_age)]
-    raise ValueError
+    if cat_age < 0 or dog_age < 0:
+        raise ValueError()
+    if not isinstance(cat_age, int) or not isinstance(dog_age, int):
+        raise TypeError()
+
+    def cat(age: int) -> int:
+        if age < 15:
+            return 0
+        elif age < 24:
+            return 1
+        else:
+            return 2 + ((age - 24) // 4)
+
+    def dog(age: int) -> int:
+        if age < 15:
+            return 0
+        elif age < 24:
+            return 1
+        else:
+            return 2 + ((age - 24) // 5)
+
+    return [cat(cat_age), dog(dog_age)]
